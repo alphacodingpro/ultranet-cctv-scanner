@@ -1,0 +1,23 @@
+name: Build desktop apps
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - run: pyinstaller --noconfirm --clean --windowed --name "UltraNet CCTV Scanner" src/ultranet_scanner/app.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ultranet-scanner-${{ runner.os }}
+          path: dist/*
+
