@@ -30,7 +30,11 @@ class AppState extends ChangeNotifier {
   void cancelScan() { discovery.cancel(); status = 'Scan cancel kiya gaya.'; notifyListeners(); }
   Future<void> upsert(CameraDevice device, {String? password}) async {
     final index = devices.indexWhere((d) => d.id == device.id || d.ip == device.ip);
-    if (index < 0) devices.add(device); else devices[index] = device;
+    if (index < 0) {
+      devices.add(device);
+    } else {
+      devices[index] = device;
+    }
     if (password != null && password.isNotEmpty) await storage.savePassword(device.id, password);
     await storage.saveDevices(devices); notifyListeners();
   }

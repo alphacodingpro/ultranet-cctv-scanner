@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/vlc_player_flutter.dart';
+import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import '../app_state.dart';
 import '../models/camera_device.dart';
 

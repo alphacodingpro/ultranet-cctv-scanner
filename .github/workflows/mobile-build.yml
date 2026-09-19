@@ -12,6 +12,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with: {channel: stable, cache: true}
       - run: flutter create --platforms=android --org com.ultranetsecurity .
+      - run: rm -f test/widget_test.dart
       - run: dart run tool/configure_native.dart
       - run: flutter pub get
       - run: flutter analyze
@@ -27,6 +28,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with: {channel: stable, cache: true}
       - run: flutter create --platforms=ios --org com.ultranetsecurity .
+      - run: rm -f test/widget_test.dart
       - run: dart run tool/configure_native.dart
       - run: flutter pub get
       - run: flutter analyze

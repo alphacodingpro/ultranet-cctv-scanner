@@ -42,7 +42,7 @@ class _CameraFormPageState extends State<CameraFormPage> {
     body: Form(key: formKey, child: ListView(padding: const EdgeInsets.all(16), children: [
       TextFormField(controller: name, decoration: const InputDecoration(labelText: 'Camera name')),
       TextFormField(controller: ip, keyboardType: TextInputType.url, decoration: const InputDecoration(labelText: 'IP address'), validator: (v) => v == null || v.trim().split('.').length != 4 ? 'Valid IPv4 address dein' : null),
-      DropdownButtonFormField(value: vendor, decoration: const InputDecoration(labelText: 'Brand/family'), items: const ['Unknown','Hikvision-family','Dahua-family','Uniview-family','RTSP device'].map((v) => DropdownMenuItem(value: v, child: Text(v))).toList(), onChanged: (v) => setState(() => vendor = v!)),
+      DropdownButtonFormField(initialValue: vendor, decoration: const InputDecoration(labelText: 'Brand/family'), items: const ['Unknown','Hikvision-family','Dahua-family','Uniview-family','RTSP device'].map((v) => DropdownMenuItem(value: v, child: Text(v))).toList(), onChanged: (v) => setState(() => vendor = v!)),
       TextFormField(controller: model, decoration: const InputDecoration(labelText: 'Model (optional)')),
       TextFormField(controller: username, decoration: const InputDecoration(labelText: 'Username')),
       TextFormField(controller: password, obscureText: true, decoration: const InputDecoration(labelText: 'Password (encrypted on device)')),
