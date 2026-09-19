@@ -17,9 +17,9 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      - run: flutter build apk --release
+      - run: flutter build apk --release --split-per-abi
       - uses: actions/upload-artifact@v4
-        with: {name: ultranet-cctv-scanner-android, path: mobile/build/app/outputs/flutter-apk/app-release.apk}
+        with: {name: ultranet-cctv-scanner-android-split, path: mobile/build/app/outputs/flutter-apk/app-*-release.apk}
   ios:
     runs-on: macos-latest
     defaults: {run: {working-directory: mobile}}
