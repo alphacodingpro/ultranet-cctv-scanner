@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ultranet-cctv-scanner"
+version = "0.1.0"
+description = "One-click local CCTV discovery and diagnostics desktop app"
+requires-python = ">=3.11"
+dependencies = ["PySide6>=6.7,<7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "pyinstaller>=6.6"]
+
+[project.scripts]
+ultranet-scanner = "ultranet_scanner.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
