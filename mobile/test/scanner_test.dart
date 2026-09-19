@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ultranet_cctv_scanner_mobile/scanner.dart';
+import 'package:ultranet_cctv_scanner_mobile/models/camera_device.dart';
+import 'package:ultranet_cctv_scanner_mobile/services/discovery_service.dart';
 
 void main() {
   test('extracts /24 prefix', () {
@@ -7,8 +8,12 @@ void main() {
   });
 
   test('classifies common CCTV ports', () {
-    expect(const Device(ip: '1.1.1.1', ports: [80, 8000]).vendorHint, 'Hikvision-family');
-    expect(const Device(ip: '1.1.1.2', ports: [554, 37777]).vendorHint, 'Dahua-family');
+    expect(vendorFromPorts([80, 8000]), 'Hikvision-family');
+    expect(vendorFromPorts([554, 37777]), 'Dahua-family');
+  });
+
+  test('does not serialize credentials', () {
+    const device = CameraDevice(id: '1', ip: '192.168.1.20', name: 'Gate', username: 'admin');
+    expect(device.toJson().containsKey('password'), isFalse);
   });
 }
-
